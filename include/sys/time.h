@@ -45,17 +45,16 @@
  *       _TIMEVAL_DEFINED in your build options to suppress this definition.
  *       Example: -D_TIMEVAL_DEFINED
  */
-#pragma message("WARNING: sys/time.h is being included without prior inclusion of Windows socket headers.")
-#pragma message("         This may cause struct timeval redefinition errors if winsock2.h is included later.")
-#pragma message("         To avoid this, include winsock2.h or winsock.h BEFORE sys/time.h.")
-#pragma message("         Alternatively, define _TIMEVAL_DEFINED in build options to suppress timeval definition.")
-
 /*
  * Define timeval structure for POSIX compatibility.
  * This matches the definition in winsock2.h to ensure binary compatibility.
  */
 # ifndef _TIMEVAL_DEFINED
 # define _TIMEVAL_DEFINED
+#pragma message("WARNING: sys/time.h is being included without prior inclusion of Windows socket headers.")
+#pragma message("         This may cause struct timeval redefinition errors if winsock2.h is included later.")
+#pragma message("         To avoid this, include winsock2.h or winsock.h BEFORE sys/time.h.")
+#pragma message("         Alternatively, define _TIMEVAL_DEFINED in build options to suppress timeval definition.")
 struct timeval {
     long tv_sec;   /* seconds */
     long tv_usec;  /* microseconds */
