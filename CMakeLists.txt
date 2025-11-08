@@ -5,12 +5,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+add_subdirectory(third_party/dirent)
 add_subdirectory(third_party/dlfcn-win32)
 add_subdirectory(third_party/winpthreads)
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/third_party/getopt
+    ${PROJECT_SOURCE_DIR}/third_party/winpthreads/include
 )
 
 file(GLOB_RECURSE SRC_FILES
