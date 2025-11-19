@@ -1,16 +1,5 @@
 /*
- * strings.h - Standard string operations header (POSIX compliant)
- *
- * This header provides case-insensitive string comparison functions and
- * bit manipulation utilities that are not available in standard string.h.
- *
- * All functions are implemented with locale support where appropriate.
- * The case-insensitive comparison functions work correctly only with
- * single-byte character encodings and are not suitable for multibyte
- * locales like UTF-8.
- *
- * Functions are ported from gnulib implementation to ensure POSIX
- * compliance and cross-platform compatibility.
+ * strings.h - Standard string operations header
  */
 
 #pragma once

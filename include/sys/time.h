@@ -1,33 +1,14 @@
 /*
  * sys/time.h - POSIX time types and timer functions
- *
- * WARNING: On Windows platforms, this header must be included AFTER
- *          any Windows socket headers (winsock2.h or winsock.h)
- *          to avoid struct timeval redefinition errors.
- *
- * Important: This header does NOT include Windows-specific headers like
- *            windows.h or winsock2.h to avoid include order dependencies
- *            and namespace pollution. System headers should remain
- *            platform-agnostic.
- *
- * Usage scenarios:
- * 1. If winsock2.h is included first:
- *    #include <winsock2.h>  // defines struct timeval and protection macros
- *    #include <sys/time.h>  // uses existing timeval definition
- *
- * 2. If sys/time.h is included first (RISKY):
- *    #include <sys/time.h>  // defines struct timeval with warnings
- *    #include <winsock2.h>  // will cause redefinition errors!
- *
- * 3. Recommended approach on Windows:
- *    #include <winsock2.h>  // always include Windows headers first
- *    #include <sys/time.h>  // then include POSIX compatibility headers
  */
 
 #pragma once
 
 #include <sys/cdefs.h>
+#include <sys/timeb.h>
 #include <time.h>
+
+__BEGIN_DECLS
 
 /*
  * We avoid including Windows headers directly in system headers to
@@ -51,10 +32,6 @@
  */
 # ifndef _TIMEVAL_DEFINED
 # define _TIMEVAL_DEFINED
-#pragma message("WARNING: sys/time.h is being included without prior inclusion of Windows socket headers.")
-#pragma message("         This may cause struct timeval redefinition errors if winsock2.h is included later.")
-#pragma message("         To avoid this, include winsock2.h or winsock.h BEFORE sys/time.h.")
-#pragma message("         Alternatively, define _TIMEVAL_DEFINED in build options to suppress timeval definition.")
 struct timeval {
     long tv_sec;   /* seconds */
     long tv_usec;  /* microseconds */
@@ -62,8 +39,6 @@ struct timeval {
 # endif
 
 #endif /* !defined(_WINSOCK2API_) && !defined(_WINSOCKAPI_) */
-
-__BEGIN_DECLS
 
 #pragma pack(push,_CRT_PACKING)
 /*
@@ -79,16 +54,7 @@ struct timezone {
 #endif
 #pragma pack(pop)
 
-/*
- * gettimeofday - get the current time with microsecond precision
- * @tp: pointer to timeval structure to receive current time
- * @tzp: pointer to timezone structure (obsolete, can be NULL)
- *
- * Returns: 0 on success, -1 on error
- *
- * Note: On Windows, this function provides a POSIX-compatible wrapper
- *       around the native Windows time APIs.
- */
-_PCRTIMP int gettimeofday(struct timeval *__restrict tp, void *__restrict tzp);
+/* gettimeofday - get the current time with microsecond precision */
+_PCRTIMP int gettimeofday(struct timeval *__restrict, void *__restrict);
 
 __END_DECLS

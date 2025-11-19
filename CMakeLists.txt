@@ -11,13 +11,14 @@ add_subdirectory(third_party/winpthreads)
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/third_party/getopt
+    ${PROJECT_SOURCE_DIR}/third_party/dirent/include
+    ${PROJECT_SOURCE_DIR}/third_party/mingw-w64-crt
     ${PROJECT_SOURCE_DIR}/third_party/winpthreads/include
 )
 
 file(GLOB_RECURSE SRC_FILES
-    "${PROJECT_SOURCE_DIR}/lib/*.c"
-    "${PROJECT_SOURCE_DIR}/third_party/getopt/*.c"
+    ${PROJECT_SOURCE_DIR}/third_party/gnulib/*.c
+    ${PROJECT_SOURCE_DIR}/third_party/mingw-w64-crt/*.c
 )
 
 add_library(libpcrt STATIC ${SRC_FILES})
@@ -38,4 +39,4 @@ install(DIRECTORY include/ DESTINATION include
     FILES_MATCHING PATTERN "*.h"
 )
 
-install(FILES third_party/getopt/getopt.h DESTINATION include)
+install(FILES third_party/mingw-w64-crt/getopt.h DESTINATION include)
