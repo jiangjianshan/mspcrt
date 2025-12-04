@@ -9,21 +9,21 @@
 /* ===== File Type Macros ===== */
 /* Block special file type macro */
 #define _S_IFBLK    0060000
-/* Block special file type (POSIX) */
+/* Block special file type */
 #define S_IFBLK     _S_IFBLK
-/* FIFO (named pipe) file type (POSIX) */
+/* FIFO (named pipe) file type */
 #define S_IFIFO     _S_IFIFO
 
 /* ===== File Type Test Macros ===== */
-/* Test for block special file (POSIX) */
+/* Test for block special file */
 #define S_ISBLK(m)  (((m) & S_IFMT) == S_IFBLK)
-/* Test for character special file (POSIX) */
+/* Test for character special file */
 #define S_ISCHR(m)  (((m) & S_IFMT) == S_IFCHR)
-/* Test for directory (POSIX) */
+/* Test for directory */
 #define S_ISDIR(m)  (((m) & S_IFMT) == S_IFDIR)
-/* Test for FIFO (named pipe) (POSIX) */
+/* Test for FIFO (named pipe) */
 #define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)
-/* Test for regular file (POSIX) */
+/* Test for regular file */
 #define S_ISREG(m)  (((m) & S_IFMT) == S_IFREG)
 
 /* ===== User (Owner) Permission Macros ===== */
@@ -36,13 +36,13 @@
 /* Read, write, execute/search by owner (POSIX: S_IRWXU) */
 #define	_S_IRWXU	  (_S_IREAD | _S_IWRITE | _S_IEXEC)
 
-/* Read permission bit for owner (POSIX) */
+/* Read permission bit for owner */
 #define	S_IRUSR		  _S_IRUSR
-/* Write permission bit for owner (POSIX) */
+/* Write permission bit for owner */
 #define	S_IWUSR		  _S_IWUSR
-/* Execute/search permission bit for owner (POSIX) */
+/* Execute/search permission bit for owner */
 #define	S_IXUSR		  _S_IXUSR
-/* Read, write, execute/search by owner (POSIX) */
+/* Read, write, execute/search by owner */
 #define	S_IRWXU	    _S_IRWXU
 
 /* ===== Group Permission Macros ===== */

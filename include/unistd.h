@@ -27,12 +27,6 @@
 
 __BEGIN_DECLS
 
-/* Suspend execution for specified seconds */
-_PCRTIMP unsigned int sleep (unsigned int);
-
-/* Suspend execution for specified microseconds */
-_PCRTIMP int usleep (useconds_t);
-
 /* Get login name */
 _PCRTIMP char *getlogin (void);
 

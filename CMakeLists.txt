@@ -5,20 +5,20 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_subdirectory(third_party/dirent)
 add_subdirectory(third_party/dlfcn-win32)
 add_subdirectory(third_party/winpthreads)
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/third_party/dirent/include
-    ${PROJECT_SOURCE_DIR}/third_party/mingw-w64-crt
     ${PROJECT_SOURCE_DIR}/third_party/winpthreads/include
 )
 
 file(GLOB_RECURSE SRC_FILES
-    ${PROJECT_SOURCE_DIR}/third_party/gnulib/*.c
-    ${PROJECT_SOURCE_DIR}/third_party/mingw-w64-crt/*.c
+    ${PROJECT_SOURCE_DIR}/login/*.c
+    ${PROJECT_SOURCE_DIR}/misc/*.c
+    ${PROJECT_SOURCE_DIR}/posix/*.c
+    ${PROJECT_SOURCE_DIR}/search/*.c
+    ${PROJECT_SOURCE_DIR}/string/*.c
 )
 
 add_library(libpcrt STATIC ${SRC_FILES})
@@ -38,5 +38,3 @@ install(TARGETS pcrt libpcrt
 install(DIRECTORY include/ DESTINATION include
     FILES_MATCHING PATTERN "*.h"
 )
-
-install(FILES third_party/mingw-w64-crt/getopt.h DESTINATION include)
